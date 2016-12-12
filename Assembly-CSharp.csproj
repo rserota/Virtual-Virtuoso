@@ -123,6 +123,7 @@
      <Compile Include="Assets\Scripts\Note.cs" />
      <Compile Include="Assets\Scripts\PickupParent.cs" />
      <Compile Include="Assets\Scripts\TimeKeeper.cs" />
+     <Compile Include="Assets\Scripts\TriggerNotes.cs" />
      <None Include="Assets\Imported\SteamVR\Resources\SteamVR_Fade.shader" />
      <None Include="Assets\Imported\Standard Assets\Prototyping\Shaders\WorldCoordDiffuse.shader" />
      <None Include="Assets\Imported\SteamVR\Resources\SteamVR_BlitFlip.shader" />

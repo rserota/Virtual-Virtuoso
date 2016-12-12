@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PickupParent : MonoBehaviour {
 	public SteamVR_TrackedObject wand;
@@ -7,11 +8,12 @@ public class PickupParent : MonoBehaviour {
 
 	private Transform handModel;
 	private Animator anima;
+	public Text hudText;
 
 
 	private string whichHandIsThis;
 	private string prevHandState;
-	private string currentHandState;
+	public string currentHandState;
 
 	public GameObject heldObject;
 
@@ -105,7 +107,9 @@ public class PickupParent : MonoBehaviour {
 
 	void OnTriggerStay(Collider other){
 		//print("Stay!");
-		if (device.GetHairTriggerDown() && heldObject == null){
+		if (device.GetHairTriggerDown() && heldObject == null && other.tag == "grabbable"){
+			hudText.text = other.tag;
+			//print("hi");
 			heldObject = other.gameObject;
 			FixedJoint handJoint = gameObject.AddComponent<FixedJoint>();
 			Rigidbody otherBody = heldObject.GetComponent<Rigidbody>();
