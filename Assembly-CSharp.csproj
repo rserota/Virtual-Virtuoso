@@ -119,9 +119,10 @@
      <Compile Include="Assets\Scripts\ChordProgression.cs" />
      <Compile Include="Assets\Scripts\DrumBox.cs" />
      <Compile Include="Assets\Scripts\FollowTarget.cs" />
+     <Compile Include="Assets\Scripts\Fret.cs" />
+     <Compile Include="Assets\Scripts\Hand.cs" />
      <Compile Include="Assets\Scripts\Locomotion.cs" />
      <Compile Include="Assets\Scripts\Note.cs" />
-     <Compile Include="Assets\Scripts\PickupParent.cs" />
      <Compile Include="Assets\Scripts\TimeKeeper.cs" />
      <Compile Include="Assets\Scripts\TriggerNotes.cs" />
      <None Include="Assets\Imported\SteamVR\Resources\SteamVR_Fade.shader" />

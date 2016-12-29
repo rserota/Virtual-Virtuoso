@@ -2,9 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class PickupParent : MonoBehaviour {
+public class Hand : MonoBehaviour {
 	public SteamVR_TrackedObject wand;
-	private SteamVR_Controller.Device device;
+	public SteamVR_Controller.Device device;
 
 	private Transform handModel;
 	private Animator anima;

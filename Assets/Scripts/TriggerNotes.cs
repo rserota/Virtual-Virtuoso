@@ -4,6 +4,7 @@ using System.Collections;
 
 public class TriggerNotes : MonoBehaviour {
 	public AudioSource bassSlap;
+	public string FrettedPitch;
 	// Use this for initialization
 	void Start () {
 		
@@ -17,6 +18,7 @@ public class TriggerNotes : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		print("hand?");
 		if ( other.tag == "hand" ) {
+			other.gameObject.GetComponent<Hand>().device.TriggerHapticPulse();
 			bassSlap.Play();
 			print("hand!");
 		}
