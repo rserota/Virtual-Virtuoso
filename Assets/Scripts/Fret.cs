@@ -3,10 +3,12 @@ using System.Collections;
 using UnityEngine.UI;  
 public class Fret : MonoBehaviour {
 	public Text hudText;
-	public string pitch;
+	private TriggerNotes triggerNotes;
+	public GameObject strumBox;
+	public string scaleDegree;
 	// Use this for initialization
 	void Start () {
-	
+		triggerNotes = strumBox.GetComponent<TriggerNotes>();
 	}
 	
 	// Update is called once per frame
@@ -19,8 +21,9 @@ public class Fret : MonoBehaviour {
 		print("hand?");
 		if ( other.tag == "hand" ) {
 			other.gameObject.GetComponent<Hand>().device.TriggerHapticPulse();
-			hudText.text = pitch;
-			print("hand!");
+			hudText.text = scaleDegree;
+			triggerNotes.frettedScaleDegree = scaleDegree;
+			//print("hand!");
 		}
 	}
 }
