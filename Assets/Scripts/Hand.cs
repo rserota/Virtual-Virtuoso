@@ -54,19 +54,39 @@ public class Hand : MonoBehaviour {
 
 		anima = handModel.GetComponent<Animator>();
 	}
+	
 	void Start () {
-		print((int)wand.index);
+		//print((int)wand.index);
 		device = SteamVR_Controller.Input((int)wand.index);
 
 			
 	}
-	
-	// Update is called once per frame
+
+		// Update is called once per frame
 	void Update () {
 		//print(transform.position);
 		device = SteamVR_Controller.Input((int)wand.index);
 		//print(device.GetHairTrigger());
 		//print(device.velocity);
+		SetHandState();
+		AnimateHandStateChange();
+			
+		if (device.GetHairTriggerUp()){
+			DropHeldObject();
+		}
+
+	}
+
+	
+	
+	void OnTriggerStay(Collider other){
+		//print("Stay!");
+		if (device.GetHairTriggerDown()){
+			PickUpObject(other);
+		}
+	}
+
+	void SetHandState () {
 		prevHandState = currentHandState;
 		if (device.GetHairTrigger()){
 			currentHandState = "Fist";
@@ -75,22 +95,9 @@ public class Hand : MonoBehaviour {
 		else {
 			currentHandState = "Idle";
 		}
-		if (device.GetHairTriggerUp()){
-			if (heldObject != null){
-				gameObject.GetComponent<FixedJoint>().connectedBody = null;
-				Destroy(gameObject.GetComponent<FixedJoint>());
-				print("dropped!");
-				Rigidbody rb = heldObject.GetComponent<Rigidbody>();
-				if ( rb == null ) {
-					rb = heldObject.transform.parent.GetComponent<Rigidbody>();
-				}
-				rb.velocity = device.velocity;
-				rb.angularVelocity = device.angularVelocity;
+	}
 
-				heldObject = null;
-			}
-		}
-
+	void AnimateHandStateChange () {
 		if (currentHandState != prevHandState){
 			if (currentHandState == "Idle"){
 				anima.SetTrigger(Idle);
@@ -99,15 +106,25 @@ public class Hand : MonoBehaviour {
 				anima.SetTrigger("Fist");
 			}
 		}
-//		print(device.GetAxis());
-//		print("=-=-=-=-=-=-=-=-=-=-=-=");
-
-
+		
 	}
 
-	void OnTriggerStay(Collider other){
-		//print("Stay!");
-		if (device.GetHairTriggerDown() && heldObject == null && other.tag == "grabbable"){
+	void DropHeldObject () {
+		if (heldObject != null){
+			gameObject.GetComponent<FixedJoint>().connectedBody = null;
+			Destroy(gameObject.GetComponent<FixedJoint>());
+			//print("dropped!");
+			Rigidbody rb = heldObject.GetComponent<Rigidbody>();
+			if ( rb == null ) {
+				rb = heldObject.transform.parent.GetComponent<Rigidbody>();
+			}
+			rb.velocity = device.velocity;
+			rb.angularVelocity = device.angularVelocity;
+			heldObject = null;
+		}
+	}
+	void PickUpObject (Collider other) {
+		if (heldObject == null && other.tag == "grabbable"){
 			hudText.text = other.tag;
 			//print("hi");
 			heldObject = other.gameObject;
@@ -121,6 +138,7 @@ public class Hand : MonoBehaviour {
 			print("Gotcha!");
 		}
 	}
+
 
 
 }
