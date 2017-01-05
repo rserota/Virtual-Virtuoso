@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class TimeKeeper : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class TimeKeeper : MonoBehaviour {
 	private int barInLoop;
 	private int beatInLoop;
 	private int beatInBar;
+	public Text hudText;
 	public AudioSource audioSource;
 
 	private float startTime;
@@ -55,15 +57,21 @@ public class TimeKeeper : MonoBehaviour {
 
 			beatInLoop = (currentBeat % (beatsPerBar * barsPerLoop)) + 1;
 			beatInBar = (currentBeat % beatsPerBar) + 1;
-//			print ("beat in bar" + beatInBar);
+			barInLoop = ((beatInLoop-1) / beatsPerBar) + 1;
+			print ("beat in bar" + beatInBar);
 			//print ("beat in loop" + beatInLoop);
-//			print ( ((beatInLoop-1) / beatsPerBar) + 1);
+			//print ( ((beatInLoop-1) / beatsPerBar) + 1);
 			//print(noteArray[beatInLoop] == null);
 			if (noteArray [beatInLoop] != null) {
 				audioSource.Play ();
 			}
 			//print ("=-=-=-=-=-=-=");
 //			noteArray [beatInLoop].play ();
+			//print(barInLoop);
+			string maybeSpace;
+			if (beatInBar < 10){ maybeSpace = " ";}
+			else { maybeSpace = "";}
+			hudText.text = barInLoop + " - " + maybeSpace + beatInBar;
 		}
 
 

@@ -14,10 +14,9 @@ public class TriggerNotes : MonoBehaviour {
 	void Start () {
 		audioClips = gameObject.GetComponents<AudioSource>();
 		notesDict = new Dictionary<string, AudioSource>();
-		print(audioClips[0].clip);
-		print("HI");
+		//print(audioClips[0].clip);
 		for (int i = 0; i < audioClips.Length; i++){
-			print(audioClips[i].clip.name);
+			//print(audioClips[i].clip.name);
 	
 			notesDict.Add(audioClips[i].clip.name, audioClips[i]);
 		}
@@ -42,10 +41,10 @@ public class TriggerNotes : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		print("hand?");
-		if ( other.tag == "hand" ) {
+		//print("hand?");
+		if ( other.tag.Contains("hand") ) {
 			other.gameObject.GetComponent<Hand>().device.TriggerHapticPulse();
-			print(frettedScaleDegree);
+			//print(frettedScaleDegree);
 
 			activeScaleDict[frettedScaleDegree].Play();
 			//print("hand!");

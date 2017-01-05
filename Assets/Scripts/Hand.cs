@@ -125,7 +125,7 @@ public class Hand : MonoBehaviour {
 	}
 	void PickUpObject (Collider other) {
 		if (heldObject == null && other.tag == "grabbable"){
-			hudText.text = other.tag;
+			//hudText.text = other.tag;
 			//print("hi");
 			heldObject = other.gameObject;
 			FixedJoint handJoint = gameObject.AddComponent<FixedJoint>();
@@ -135,7 +135,7 @@ public class Hand : MonoBehaviour {
 			}
 			handJoint.connectedBody = otherBody;
 
-			print("Gotcha!");
+			//print("Gotcha!");
 		}
 	}
 
