@@ -86,6 +86,12 @@ public class Hand : MonoBehaviour {
 		}
 	}
 
+	void OnTriggerEnter(Collider other){
+		if ( other.tag.Contains("pulse")){
+			device.TriggerHapticPulse();
+		}	
+	}
+
 	void SetHandState () {
 		prevHandState = currentHandState;
 		if (device.GetHairTrigger()){
@@ -124,7 +130,7 @@ public class Hand : MonoBehaviour {
 		}
 	}
 	void PickUpObject (Collider other) {
-		if (heldObject == null && other.tag == "grabbable"){
+		if (heldObject == null && other.tag.Contains("grabbable")){
 			//hudText.text = other.tag;
 			//print("hi");
 			heldObject = other.gameObject;

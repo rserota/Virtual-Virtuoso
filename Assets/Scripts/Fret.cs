@@ -5,10 +5,14 @@ public class Fret : MonoBehaviour {
 	public Text hudText;
 	private TriggerNotes triggerNotes;
 	public GameObject strumBox;
+	private Renderer strumBoxRenderer;
+	private Renderer thisRenderer;
 	public string scaleDegree;
 	// Use this for initialization
 	void Start () {
 		triggerNotes = strumBox.GetComponent<TriggerNotes>();
+		strumBoxRenderer = strumBox.GetComponent<Renderer>();
+		thisRenderer = gameObject.GetComponent<Renderer>();
 	}
 	
 	// Update is called once per frame
@@ -24,6 +28,8 @@ public class Fret : MonoBehaviour {
 			hudText.text = scaleDegree;
 			triggerNotes.frettedScaleDegree = scaleDegree;
 			//print("hand!");
+			triggerNotes.baseColor = thisRenderer.material.color;
+			strumBoxRenderer.material.color = thisRenderer.material.color;
 		}
 	}
 }
