@@ -7,6 +7,9 @@ public class TimeKeeper : MonoBehaviour {
 	public static Note[] noteArray;
 	public int bpm;
 	private int beatLen;
+	private int tickLen;
+	private int currentTick;
+	private int prevTick;
 	private int currentBeat;
 	private int prevBeat;
 	public int beatsPerBar;
@@ -21,6 +24,7 @@ public class TimeKeeper : MonoBehaviour {
 	void Awake () {
 		noteArray = new Note[(beatsPerBar * barsPerLoop)+1];
 		beatLen = 60000 / bpm; // 60,000 milliseconds per minute
+		tickLen = beatLen / 12;
 		print (beatLen);
 		audioSource = GetComponent<AudioSource> ();
 
@@ -48,10 +52,18 @@ public class TimeKeeper : MonoBehaviour {
 		//print (Time.time * 1000);
 		float timeElapsed = (Time.time + startTime) * 1000;
 
-		prevBeat    = currentBeat;
-		currentBeat = ((int)timeElapsed / beatLen) -3 ;
-		if (prevBeat != currentBeat) {
-//			audioSource.Play ();
+		prevTick    = currentTick;
+		currentTick = ((int)timeElapsed / tickLen) -3 ;
+		if (prevTick != currentTick) {
+			//print("current tick" + currentTick);
+			if ( currentTick < 1 )  {
+				currentBeat = 0;
+			}
+			else {
+				currentBeat = ((currentTick-1) / 12) + 1;
+			}
+			//print("current beat" + currentBeat);
+			print("=-=-=-=-=-=-=-=-=-=-=");
 //			print (beatsPerBar);
 //			print ((currentBeat % beatsPerBar) + 1);
 
@@ -67,7 +79,7 @@ public class TimeKeeper : MonoBehaviour {
 			}
 			//print ("=-=-=-=-=-=-=");
 //			noteArray [beatInLoop].play ();
-			//print(barInLoop);
+			print(barInLoop);
 			string maybeSpace;
 			if (beatInBar < 10){ maybeSpace = " ";}
 			else { maybeSpace = "";}
