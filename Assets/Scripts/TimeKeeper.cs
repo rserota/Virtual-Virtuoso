@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class TimeKeeper : MonoBehaviour {
 
-	public static Note[] noteArray;
+	public static List<Note>[] noteArray;
 	public int bpm;
 	private int beatLen;
 	private int tickLen;
 	private int currentTick;
 	private int prevTick;
+	private int tickInLoop;
 	private int currentBeat;
 	private int prevBeat;
 	public int beatsPerBar;
@@ -22,7 +24,11 @@ public class TimeKeeper : MonoBehaviour {
 
 	private float startTime;
 	void Awake () {
-		noteArray = new Note[(beatsPerBar * barsPerLoop)+1];
+		noteArray = new List<Note>[(beatsPerBar * barsPerLoop)+1];
+
+		for (int i = 0; i < noteArray.Length; i++){
+			noteArray[i] = new List<Note>();
+		}
 		beatLen = 60000 / bpm; // 60,000 milliseconds per minute
 		tickLen = beatLen / 12;
 		print (beatLen);
@@ -39,9 +45,12 @@ public class TimeKeeper : MonoBehaviour {
 		if (Input.GetKeyDown ("space")) {
 			print (beatInLoop);
 			audioSource.Play ();
-			print (noteArray);
-
-			noteArray[beatInLoop] = new Note ("hat", beatInLoop, "");
+			//print (noteArray);
+			print("add a beat");
+			noteArray[beatInLoop].Add(new Note ("hat", beatInLoop, ""));
+			foreach (var item in noteArray){
+				print(item.Count);
+			}
 
 		}
 
@@ -55,36 +64,46 @@ public class TimeKeeper : MonoBehaviour {
 		prevTick    = currentTick;
 		currentTick = ((int)timeElapsed / tickLen) -3 ;
 		if (prevTick != currentTick) {
-			//print("current tick" + currentTick);
+			print("=-=-=-=-=-=-=-=-=-=-=");
+			print("current tick" + currentTick);
+			//print(currentTick % (12 * beatsPerBar * barsPerLoop));
+			tickInLoop = (currentTick % (12 * beatsPerBar * barsPerLoop)) + 1;
 			if ( currentTick < 1 )  {
 				currentBeat = 0;
+				beatInLoop = 0;
 			}
 			else {
 				currentBeat = ((currentTick-1) / 12) + 1;
+				beatInLoop = ((currentBeat-1) % (beatsPerBar * barsPerLoop))+1;
 			}
-			//print("current beat" + currentBeat);
-			print("=-=-=-=-=-=-=-=-=-=-=");
+			print("current beat" + currentBeat);
+
 //			print (beatsPerBar);
 //			print ((currentBeat % beatsPerBar) + 1);
 
-			beatInLoop = (currentBeat % (beatsPerBar * barsPerLoop)) + 1;
+
 			beatInBar = (currentBeat % beatsPerBar) + 1;
 			barInLoop = ((beatInLoop-1) / beatsPerBar) + 1;
-			print ("beat in bar" + beatInBar);
-			//print ("beat in loop" + beatInLoop);
+			//print ("beat in bar" + beatInBar);
+			print ("beat in loop" + beatInLoop);
 			//print ( ((beatInLoop-1) / beatsPerBar) + 1);
 			//print(noteArray[beatInLoop] == null);
-			if (noteArray [beatInLoop] != null) {
-				audioSource.Play ();
+			//print(noteArray[beatInLoop].Count);
+			foreach (Note item in noteArray[beatInLoop]) {
+				//print(item);
 			}
-			//print ("=-=-=-=-=-=-=");
 //			noteArray [beatInLoop].play ();
-			print(barInLoop);
+			//print(barInLoop);
+
+
+
+
 			string maybeSpace;
 			if (beatInBar < 10){ maybeSpace = " ";}
 			else { maybeSpace = "";}
 			hudText.text = barInLoop + " - " + maybeSpace + beatInBar;
 		}
+
 
 
 	}

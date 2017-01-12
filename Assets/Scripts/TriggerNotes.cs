@@ -12,7 +12,8 @@ public class TriggerNotes : MonoBehaviour {
 	// it's not an absolute note, but a relative degree on any scale
 	public string frettedScaleDegree = "i";
 	public float timeLastPlayed;
-	// Use this for initialization
+	public TimeKeeper timeKeeper;
+
 	void Start () {
 		meshRenderer = gameObject.GetComponent<Renderer>();
 
@@ -53,6 +54,7 @@ public class TriggerNotes : MonoBehaviour {
 			activeScaleDict[frettedScaleDegree].Play();
 			other.gameObject.GetComponent<Hand>().device.TriggerHapticPulse();
 			timeLastPlayed = Time.time;
+			//timeKeeper.
 			//meshRenderer.material.color = Color.cyan;
 
 			//print(frettedScaleDegree);
