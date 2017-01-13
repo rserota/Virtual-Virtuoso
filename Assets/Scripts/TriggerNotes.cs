@@ -15,6 +15,8 @@ public class TriggerNotes : MonoBehaviour {
 	public TimeKeeper timeKeeper;
 
 	void Start () {
+		print(timeKeeper.noteArray);
+
 		meshRenderer = gameObject.GetComponent<Renderer>();
 
 		audioClips = gameObject.GetComponents<AudioSource>();
@@ -54,9 +56,7 @@ public class TriggerNotes : MonoBehaviour {
 			activeScaleDict[frettedScaleDegree].Play();
 			other.gameObject.GetComponent<Hand>().device.TriggerHapticPulse();
 			timeLastPlayed = Time.time;
-			//timeKeeper.
-			//meshRenderer.material.color = Color.cyan;
-
+			timeKeeper.noteArray[timeKeeper.tickInLoop].Add(new Note("bass", timeKeeper.tickInLoop, activeScaleDict[frettedScaleDegree].clip.name));
 			//print(frettedScaleDegree);
 
 

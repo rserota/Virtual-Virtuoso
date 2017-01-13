@@ -46,24 +46,25 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
-     <Compile Include="Assets\Imported\SteamVR\Editor\SteamVR_Editor.cs" />
-     <Compile Include="Assets\Imported\SteamVR\Editor\SteamVR_RenderModelEditor.cs" />
-     <Compile Include="Assets\Imported\SteamVR\Editor\SteamVR_Settings.cs" />
-     <Compile Include="Assets\Imported\SteamVR\Editor\SteamVR_SkyboxEditor.cs" />
-     <Compile Include="Assets\Imported\SteamVR\Editor\SteamVR_Update.cs" />
-     <None Include="Assets\Imported\SteamVR\Resources\SteamVR_Fade.shader" />
+     <Compile Include="Assets\SteamVR\Editor\SteamVR_Editor.cs" />
+     <Compile Include="Assets\SteamVR\Editor\SteamVR_RenderModelEditor.cs" />
+     <Compile Include="Assets\SteamVR\Editor\SteamVR_Settings.cs" />
+     <Compile Include="Assets\SteamVR\Editor\SteamVR_SkyboxEditor.cs" />
+     <Compile Include="Assets\SteamVR\Editor\SteamVR_Update.cs" />
+     <None Include="Assets\SteamVR\Resources\SteamVR_Fade.shader" />
      <None Include="Assets\Imported\Standard Assets\Prototyping\Shaders\WorldCoordDiffuse.shader" />
-     <None Include="Assets\Imported\SteamVR\Resources\SteamVR_BlitFlip.shader" />
-     <None Include="Assets\Imported\SteamVR\Resources\SteamVR_ClearAll.shader" />
-     <None Include="Assets\Imported\SteamVR\Resources\SteamVR_HiddenArea.shader" />
-     <None Include="Assets\Imported\SteamVR\Resources\SteamVR_Overlay.shader" />
+     <None Include="Assets\SteamVR\Resources\SteamVR_ClearAll.shader" />
+     <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />
+     <None Include="Assets\SteamVR\InteractionSystem\Teleport\Shaders\Highlight.shader" />
      <None Include="Assets\Imported\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
-     <None Include="Assets\Imported\SteamVR\Resources\SteamVR_Blit.shader" />
-     <None Include="Assets\Imported\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
-     <None Include="Assets\Imported\SteamVR\Resources\SteamVR_AlphaOut.shader" />
+     <None Include="Assets\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
+     <None Include="Assets\SteamVR\Resources\SteamVR_AlphaOut.shader" />
      <None Include="Assets\Imported\vr cartoon hand\sources\shader\Fresnel - Transparent Rim.shader" />
-     <None Include="Assets\Imported\SteamVR\readme.txt" />
-     <None Include="Assets\Imported\SteamVR\Resources\SteamVR_ColorOut.shader" />
+     <None Include="Assets\SteamVR\readme.txt" />
+     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
+     <None Include="Assets\SteamVR\Resources\SteamVR_ColorOut.shader" />
+     <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
+     <None Include="Assets\SteamVR\InteractionSystem\Readme_InteractionSystem.txt" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>

@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 public class TimeKeeper : MonoBehaviour {
 
-	public static List<Note>[] noteArray;
+	public List<Note>[] noteArray;
 	public int bpm;
 	private int beatLen;
 	private int tickLen;
 	private int currentTick;
 	private int prevTick;
-	private int tickInLoop;
+	public int tickInLoop {get; private set;}
 	private int currentBeat;
 	private int prevBeat;
 	public int beatsPerBar;
@@ -31,7 +31,7 @@ public class TimeKeeper : MonoBehaviour {
 		}
 		beatLen = 60000 / bpm; // 60,000 milliseconds per minute
 		tickLen = beatLen / 12;
-		print (beatLen);
+		//print (beatLen);
 		audioSource = GetComponent<AudioSource> ();
 
 	}
@@ -64,8 +64,8 @@ public class TimeKeeper : MonoBehaviour {
 		prevTick    = currentTick;
 		currentTick = ((int)timeElapsed / tickLen) -3 ;
 		if (prevTick != currentTick) {
-			print("=-=-=-=-=-=-=-=-=-=-=");
-			print("current tick" + currentTick);
+			//print("=-=-=-=-=-=-=-=-=-=-=");
+			//print("current tick" + currentTick);
 			//print(currentTick % (12 * beatsPerBar * barsPerLoop));
 			tickInLoop = (currentTick % (12 * beatsPerBar * barsPerLoop)) + 1;
 			if ( currentTick < 1 )  {
@@ -76,7 +76,7 @@ public class TimeKeeper : MonoBehaviour {
 				currentBeat = ((currentTick-1) / 12) + 1;
 				beatInLoop = ((currentBeat-1) % (beatsPerBar * barsPerLoop))+1;
 			}
-			print("current beat" + currentBeat);
+			//print("current beat" + currentBeat);
 
 //			print (beatsPerBar);
 //			print ((currentBeat % beatsPerBar) + 1);
@@ -85,7 +85,7 @@ public class TimeKeeper : MonoBehaviour {
 			beatInBar = (currentBeat % beatsPerBar) + 1;
 			barInLoop = ((beatInLoop-1) / beatsPerBar) + 1;
 			//print ("beat in bar" + beatInBar);
-			print ("beat in loop" + beatInLoop);
+			//print ("beat in loop" + beatInLoop);
 			//print ( ((beatInLoop-1) / beatsPerBar) + 1);
 			//print(noteArray[beatInLoop] == null);
 			//print(noteArray[beatInLoop].Count);
