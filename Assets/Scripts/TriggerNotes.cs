@@ -53,6 +53,9 @@ public class TriggerNotes : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		//print("hand?");
 		if ( other.tag.Contains("hand") ) {
+			print("=-=-=-=-=-=-=");
+			print("fretted scale degree " + frettedScaleDegree);
+			print("timekeeper tickinloop " + timeKeeper.tickInLoop);
 			activeScaleDict[frettedScaleDegree].Play();
 			other.gameObject.GetComponent<Hand>().device.TriggerHapticPulse();
 			timeLastPlayed = Time.time;

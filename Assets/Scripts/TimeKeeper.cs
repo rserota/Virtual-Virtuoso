@@ -24,7 +24,7 @@ public class TimeKeeper : MonoBehaviour {
 
 	private float startTime;
 	void Awake () {
-		noteArray = new List<Note>[(beatsPerBar * barsPerLoop)+1];
+		noteArray = new List<Note>[(12 * beatsPerBar * barsPerLoop)+1];
 
 		for (int i = 0; i < noteArray.Length; i++){
 			noteArray[i] = new List<Note>();
