@@ -59,7 +59,7 @@ public class TriggerNotes : MonoBehaviour {
 			activeScaleDict[frettedScaleDegree].Play();
 			other.gameObject.GetComponent<Hand>().device.TriggerHapticPulse();
 			timeLastPlayed = Time.time;
-			timeKeeper.noteArray[timeKeeper.tickInLoop].Add(new Note("bass", timeKeeper.tickInLoop, activeScaleDict[frettedScaleDegree].clip.name));
+			timeKeeper.noteArray[timeKeeper.tickInLoop].Add(new Note("bass", timeKeeper.tickInLoop, activeScaleDict[frettedScaleDegree].clip.name, activeScaleDict[frettedScaleDegree]));
 			//print(frettedScaleDegree);
 
 

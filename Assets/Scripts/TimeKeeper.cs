@@ -47,7 +47,7 @@ public class TimeKeeper : MonoBehaviour {
 			audioSource.Play ();
 			//print (noteArray);
 			print("add a beat");
-			noteArray[beatInLoop].Add(new Note ("hat", beatInLoop, ""));
+			noteArray[tickInLoop].Add(new Note ("hat", beatInLoop, "", audioSource));
 			foreach (var item in noteArray){
 				print(item.Count);
 			}
@@ -67,12 +67,13 @@ public class TimeKeeper : MonoBehaviour {
 			//print("=-=-=-=-=-=-=-=-=-=-=");
 			//print("current tick" + currentTick);
 			//print(currentTick % (12 * beatsPerBar * barsPerLoop));
-			tickInLoop = (currentTick % (12 * beatsPerBar * barsPerLoop)) + 1;
 			if ( currentTick < 1 )  {
 				currentBeat = 0;
 				beatInLoop = 0;
+				tickInLoop = 0;
 			}
 			else {
+				tickInLoop = (currentTick % (12 * beatsPerBar * barsPerLoop)) + 1;
 				currentBeat = ((currentTick-1) / 12) + 1;
 				beatInLoop = ((currentBeat-1) % (beatsPerBar * barsPerLoop))+1;
 			}
@@ -89,8 +90,12 @@ public class TimeKeeper : MonoBehaviour {
 			//print ( ((beatInLoop-1) / beatsPerBar) + 1);
 			//print(noteArray[beatInLoop] == null);
 			//print(noteArray[beatInLoop].Count);
-			foreach (Note item in noteArray[beatInLoop]) {
+			if ( tickInLoop > 0 ) {
+				
+			}
+			foreach (Note item in noteArray[tickInLoop]) {
 				//print(item);
+				item.audioSource.Play();
 			}
 //			noteArray [beatInLoop].play ();
 			//print(barInLoop);
