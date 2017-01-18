@@ -17,6 +17,7 @@ public class Locomotion : MonoBehaviour {
 		newVelocity.y = 0;
 		//print(newVelocity);
 		Rigidbody rigidBody = cameraRig.GetComponent<Rigidbody>();
+		print(newVelocity);
 		rigidBody.velocity = newVelocity;
 	}
 }

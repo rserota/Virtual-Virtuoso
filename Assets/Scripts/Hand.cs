@@ -10,7 +10,7 @@ public class Hand : MonoBehaviour {
 	private Animator anima;
 	public Text hudText;
 
-
+	private SteamVR_LaserPointer laserPointer;
 	private string whichHandIsThis;
 	private string prevHandState;
 	public string currentHandState;
@@ -53,6 +53,8 @@ public class Hand : MonoBehaviour {
 		}
 
 		anima = handModel.GetComponent<Animator>();
+
+		laserPointer = GetComponent<SteamVR_LaserPointer>();
 	}
 	
 	void Start () {
@@ -73,6 +75,10 @@ public class Hand : MonoBehaviour {
 			
 		if (device.GetHairTriggerUp()){
 			DropHeldObject();
+		}
+
+		if ( device.GetPressUp(SteamVR_Controller.ButtonMask.ApplicationMenu) ){
+			
 		}
 
 	}

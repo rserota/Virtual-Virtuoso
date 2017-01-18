@@ -1,6 +1,7 @@
 ﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public struct PointerEventArgs
 {
@@ -25,12 +26,20 @@ public class SteamVR_LaserPointer : MonoBehaviour
     public Transform reference;
     public event PointerEventHandler PointerIn;
     public event PointerEventHandler PointerOut;
+	public Text tagText;
 
     Transform previousContact = null;
+
+	public void whatAmIPointingAt(object sender, PointerEventArgs e){
+		tagText.text = e.target.tag;
+	}
 
 	// Use this for initialization
 	void Start ()
     {
+		PointerIn += whatAmIPointingAt;
+
+
         holder = new GameObject();
         holder.transform.parent = this.transform;
         holder.transform.localPosition = Vector3.zero;
@@ -90,6 +99,7 @@ public class SteamVR_LaserPointer : MonoBehaviour
         SteamVR_TrackedController controller = GetComponent<SteamVR_TrackedController>();
 
         Ray raycast = new Ray(transform.position, transform.forward);
+
         RaycastHit hit;
         bool bHit = Physics.Raycast(raycast, out hit);
 
