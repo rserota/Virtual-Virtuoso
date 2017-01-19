@@ -27,6 +27,7 @@ public class SteamVR_LaserPointer : MonoBehaviour
     public event PointerEventHandler PointerIn;
     public event PointerEventHandler PointerOut;
 	public Text tagText;
+	private Hand hand;
 
     Transform previousContact = null;
 
@@ -39,7 +40,7 @@ public class SteamVR_LaserPointer : MonoBehaviour
     {
 		PointerIn += whatAmIPointingAt;
 
-
+		hand = GetComponent<Hand>();
         holder = new GameObject();
         holder.transform.parent = this.transform;
         holder.transform.localPosition = Vector3.zero;
@@ -146,6 +147,12 @@ public class SteamVR_LaserPointer : MonoBehaviour
         {
             pointer.transform.localScale = new Vector3(thickness, thickness, dist);
         }
-        pointer.transform.localPosition = new Vector3(0f, 0f, dist/2f);
+
+		if ( hand.whichHandIsThis == "right" ) {
+			pointer.transform.localPosition = new Vector3(0.018f, 0.025f, dist/2f);
+		}
+		else {
+			pointer.transform.localPosition = new Vector3(-0.018f, 0.025f, dist/2f);
+		}
     }
 }

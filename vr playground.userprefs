@@ -1,15 +1,34 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Hand.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MuteRecordStateManager.cs">
     <Files>
-      <File FileName="Assets\Scripts\TriggerNotes.cs" Line="62" Column="173" />
+      <File FileName="Assets\Scripts\TriggerNotes.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\TimeKeeper.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Note.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Locomotion.cs" Line="1" Column="1" />
-      <File FileName="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" Line="29" Column="17" />
-      <File FileName="Assets\Scripts\Hand.cs" Line="73" Column="18" />
+      <File FileName="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" Line="30" Column="9" />
+      <File FileName="Assets\Scripts\Hand.cs" Line="124" Column="1" />
       <File FileName="Assets\SteamVR\Scripts\SteamVR_Controller.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MuteRecordStateManager.cs" Line="14" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="vr playground" expanded="True">
+            <Node name="Assembly-CSharp" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="MuteRecordStateManager.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State name="__root__">
+          <Node name="vr playground" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

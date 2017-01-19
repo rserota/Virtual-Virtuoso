@@ -11,7 +11,7 @@ public class Hand : MonoBehaviour {
 	public Text hudText;
 
 	private SteamVR_LaserPointer laserPointer;
-	private string whichHandIsThis;
+	public string whichHandIsThis;
 	private string prevHandState;
 	public string currentHandState;
 
@@ -72,14 +72,12 @@ public class Hand : MonoBehaviour {
 		//print(device.velocity);
 		SetHandState();
 		AnimateHandStateChange();
-			
+		StateChangeOneShotEffects();
 		if (device.GetHairTriggerUp()){
 			DropHeldObject();
 		}
 
-		if ( device.GetPressUp(SteamVR_Controller.ButtonMask.ApplicationMenu) ){
-			
-		}
+
 
 	}
 
@@ -100,13 +98,25 @@ public class Hand : MonoBehaviour {
 
 	void SetHandState () {
 		prevHandState = currentHandState;
-		if (device.GetHairTrigger()){
-			currentHandState = "Fist";
-
+		if ( currentHandState == "Laser" ) {
+			if ( device.GetPressUp(SteamVR_Controller.ButtonMask.ApplicationMenu) ){
+				currentHandState = "Idle";
+			}
 		}
 		else {
-			currentHandState = "Idle";
+			
+			if ( device.GetPressUp(SteamVR_Controller.ButtonMask.ApplicationMenu) ){
+				currentHandState = "Laser";
+			}
+			else if (device.GetHairTrigger()){
+				currentHandState = "Fist";
+
+			}
+			else {
+				currentHandState = "Idle";
+			}
 		}
+
 	}
 
 	void AnimateHandStateChange () {
@@ -115,10 +125,30 @@ public class Hand : MonoBehaviour {
 				anima.SetTrigger(Idle);
 			}
 			if (currentHandState == "Fist"){
-				anima.SetTrigger("Fist");
+				anima.SetTrigger(Fist);
+			}
+			if (currentHandState == "Laser"){
+				anima.SetTrigger(Gun);
 			}
 		}
 		
+	}
+
+	void StateChangeOneShotEffects () {
+		if (currentHandState != prevHandState){
+
+			if (currentHandState == "Laser"){
+				laserPointer.enabled = true;
+				if ( laserPointer.holder != null ) {
+					laserPointer.holder.SetActive(true);
+				}
+			}
+
+			if (prevHandState == "Laser"){
+				laserPointer.enabled = false;
+				laserPointer.holder.SetActive(false);
+			}
+		}
 	}
 
 	void DropHeldObject () {
