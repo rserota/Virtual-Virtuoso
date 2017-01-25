@@ -15,7 +15,7 @@ public class TriggerNotes : MonoBehaviour {
 	public TimeKeeper timeKeeper;
 
 	void Start () {
-		print(timeKeeper.noteArray);
+		//print(timeKeeper.noteArray);
 
 		meshRenderer = gameObject.GetComponent<Renderer>();
 

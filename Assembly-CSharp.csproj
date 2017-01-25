@@ -88,6 +88,7 @@
      <Compile Include="Assets\Scripts\Fret.cs" />
      <Compile Include="Assets\Scripts\Hand.cs" />
      <Compile Include="Assets\Scripts\Locomotion.cs" />
+     <Compile Include="Assets\Scripts\Microphone.cs" />
      <Compile Include="Assets\Scripts\MuteRecordStateManager.cs" />
      <Compile Include="Assets\Scripts\Note.cs" />
      <Compile Include="Assets\Scripts\TimeKeeper.cs" />
