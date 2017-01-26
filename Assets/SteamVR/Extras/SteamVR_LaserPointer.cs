@@ -26,19 +26,15 @@ public class SteamVR_LaserPointer : MonoBehaviour
     public Transform reference;
     public event PointerEventHandler PointerIn;
     public event PointerEventHandler PointerOut;
-	public Text tagText;
 	private Hand hand;
 
     Transform previousContact = null;
 
-	public void whatAmIPointingAt(object sender, PointerEventArgs e){
-		tagText.text = e.target.tag;
-	}
+
 
 	// Use this for initialization
 	void Start ()
     {
-		PointerIn += whatAmIPointingAt;
 
 		hand = GetComponent<Hand>();
         holder = new GameObject();

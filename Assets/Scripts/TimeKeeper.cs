@@ -83,7 +83,7 @@ public class TimeKeeper : MonoBehaviour {
 //			print ((currentBeat % beatsPerBar) + 1);
 
 
-			beatInBar = (currentBeat % beatsPerBar) + 1;
+			beatInBar = ((beatInLoop-1) % beatsPerBar) + 1;
 			barInLoop = ((beatInLoop-1) / beatsPerBar) + 1;
 			//print ("beat in bar" + beatInBar);
 			//print ("beat in loop" + beatInLoop);

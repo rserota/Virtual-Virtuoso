@@ -9,6 +9,7 @@ public class Hand : MonoBehaviour {
 	private Transform handModel;
 	private Animator anima;
 	public Text hudText;
+	public Text tagText;
 
 	private SteamVR_LaserPointer laserPointer;
 	public string whichHandIsThis;
@@ -16,7 +17,7 @@ public class Hand : MonoBehaviour {
 	public string currentHandState;
 
 	public GameObject heldObject;
-
+	public GameObject whatIAmPointingAt;
 
 	int Idle = Animator.StringToHash("Idle");
 	int Point = Animator.StringToHash("Point");
@@ -56,11 +57,21 @@ public class Hand : MonoBehaviour {
 
 		laserPointer = GetComponent<SteamVR_LaserPointer>();
 	}
-	
+	public void whatAmIPointingAt(object sender, PointerEventArgs e){
+		tagText.text = e.target.tag;
+		whatIAmPointingAt = e.target.gameObject;
+	}
+
+	public void iAmPointingAtNothing(object sender, PointerEventArgs e){
+		whatIAmPointingAt = null;
+		tagText.text = "NOTHING";
+		print("POINTER OUT");
+	}
 	void Start () {
 		//print((int)wand.index);
 		device = SteamVR_Controller.Input((int)wand.index);
-
+		laserPointer.PointerIn += whatAmIPointingAt;
+		laserPointer.PointerOut += iAmPointingAtNothing;
 			
 	}
 
@@ -73,8 +84,22 @@ public class Hand : MonoBehaviour {
 		SetHandState();
 		AnimateHandStateChange();
 		StateChangeOneShotEffects();
-		if (device.GetHairTriggerUp()){
-			DropHeldObject();
+		if (currentHandState != "Laser"){
+			if (device.GetHairTriggerUp()){
+				DropHeldObject();
+			}
+
+		}
+
+		else if ( currentHandState == "Laser" ) {
+			print("laser");
+			if ( whatIAmPointingAt != null ) {
+				print(device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).x);
+
+				if ( device.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Axis0) ){
+					tagText.text = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).ToString();
+				}
+			}
 		}
 
 
@@ -85,9 +110,12 @@ public class Hand : MonoBehaviour {
 	
 	void OnTriggerStay(Collider other){
 		//print("Stay!");
-		if (device.GetHairTriggerDown()){
-			PickUpObject(other);
+		if (currentHandState != "Laser"){
+			if (device.GetHairTriggerDown()){
+				PickUpObject(other);
+			}	
 		}
+
 	}
 
 	void OnTriggerEnter(Collider other){
