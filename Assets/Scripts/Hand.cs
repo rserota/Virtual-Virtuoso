@@ -75,7 +75,7 @@ public class Hand : MonoBehaviour {
 			
 	}
 
-		// Update is called once per frame
+
 	void Update () {
 		//print(transform.position);
 		device = SteamVR_Controller.Input((int)wand.index);
@@ -92,13 +92,26 @@ public class Hand : MonoBehaviour {
 		}
 
 		else if ( currentHandState == "Laser" ) {
-			print("laser");
-			if ( whatIAmPointingAt != null ) {
-				print(device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).x);
+			if ( whatIAmPointingAt != null ) { // we're pointing at SOMETHING
+				if ( whatIAmPointingAt.tag.Contains("instrument") ) {
+					if ( device.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Axis0) ){
+						MuteRecordStateManager mrsm = whatIAmPointingAt.GetComponentInChildren<MuteRecordStateManager>();
 
-				if ( device.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Axis0) ){
-					tagText.text = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).ToString();
+						if ( device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).y > .7f ) {
+							mrsm.muted = !mrsm.muted;
+						}
+						else if ( device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).y < -.7f ) {
+							mrsm.recording = !mrsm.recording;
+						}
+						else {
+							mrsm.scheduledToMute = !mrsm.scheduledToMute;
+						}
+					}
+
 				}
+
+
+
 			}
 		}
 

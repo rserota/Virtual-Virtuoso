@@ -16,6 +16,7 @@ public class FollowTarget : MonoBehaviour {
 		Vector3 newPos = target.transform.position;
 		newPos.y += hoverHeight;
 		transform.position = newPos;
+		transform.rotation = Quaternion.identity;
 		//transform.localEulerAngles = new Vector3(0f, 0f, target.transform.localEulerAngles.z);
 	}
 }

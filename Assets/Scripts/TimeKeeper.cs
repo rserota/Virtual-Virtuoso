@@ -90,9 +90,7 @@ public class TimeKeeper : MonoBehaviour {
 			//print ( ((beatInLoop-1) / beatsPerBar) + 1);
 			//print(noteArray[beatInLoop] == null);
 			//print(noteArray[beatInLoop].Count);
-			if ( tickInLoop > 0 ) {
-				
-			}
+
 			foreach (Note item in noteArray[tickInLoop]) {
 				//print(item);
 				item.audioSource.Play();

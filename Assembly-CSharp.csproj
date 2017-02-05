@@ -91,6 +91,7 @@
      <Compile Include="Assets\Scripts\Microphone.cs" />
      <Compile Include="Assets\Scripts\MuteRecordStateManager.cs" />
      <Compile Include="Assets\Scripts\Note.cs" />
+     <Compile Include="Assets\Scripts\RollToHead.cs" />
      <Compile Include="Assets\Scripts\TimeKeeper.cs" />
      <Compile Include="Assets\Scripts\TriggerNotes.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />

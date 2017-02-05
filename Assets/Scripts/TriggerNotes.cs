@@ -6,17 +6,21 @@ public class TriggerNotes : MonoBehaviour {
 	public AudioSource bassSlap;
 	public AudioSource[] audioClips;
 	public Dictionary<string, AudioSource> notesDict;
-	public Dictionary<string, AudioSource> activeScaleDict;
 	public Color baseColor;
 	public Renderer meshRenderer;
 	// it's not an absolute note, but a relative degree on any scale
 	public string frettedScaleDegree = "i";
 	public float timeLastPlayed;
+	public GameObject muteRecordStopLight;
+	private MuteRecordStateManager mrsm;
+	public List<Note>[] noteArray;
 	public TimeKeeper timeKeeper;
-
+	void awake () {
+		timeKeeper = GameObject.Find("TimeKeeper").GetComponent<TimeKeeper>();
+	}
 	void Start () {
 		//print(timeKeeper.noteArray);
-
+		mrsm = muteRecordStopLight.GetComponent<MuteRecordStateManager>();
 		meshRenderer = gameObject.GetComponent<Renderer>();
 
 		audioClips = gameObject.GetComponents<AudioSource>();
@@ -28,16 +32,14 @@ public class TriggerNotes : MonoBehaviour {
 			notesDict.Add(audioClips[i].clip.name, audioClips[i]);
 		}
 
-		activeScaleDict = new Dictionary<string, AudioSource>();
-		activeScaleDict.Add("i", notesDict["BassSlapC4"]);
-		activeScaleDict.Add("ii", notesDict["BassSlapD4"]);
-		activeScaleDict.Add("iii", notesDict["BassSlapE4"]);
-		activeScaleDict.Add("iv", notesDict["BassSlapF4"]);
-		activeScaleDict.Add("v", notesDict["BassSlapG4"]);
-		activeScaleDict.Add("vi", notesDict["BassSlapA4"]);
-		activeScaleDict.Add("vii", notesDict["BassSlapB4"]);
-		activeScaleDict.Add("viii", notesDict["BassSlapC5"]);
-
+		notesDict.Add("i", notesDict["BassSlapC4"]);
+		notesDict.Add("ii", notesDict["BassSlapD4"]);
+		notesDict.Add("iii", notesDict["BassSlapE4"]);
+		notesDict.Add("iv", notesDict["BassSlapF4"]);
+		notesDict.Add("v", notesDict["BassSlapG4"]);
+		notesDict.Add("vi", notesDict["BassSlapA4"]);
+		notesDict.Add("vii", notesDict["BassSlapB4"]);
+		notesDict.Add("viii", notesDict["BassSlapC5"]);
 		timeLastPlayed = -1f;
 		//print(audioClips[0].time);
 		baseColor = new Color(.8f, .8f, .8f);
@@ -52,14 +54,14 @@ public class TriggerNotes : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other) {
 		//print("hand?");
-		if ( other.tag.Contains("hand") ) {
+		if ( other.tag.Contains("hand") && mrsm.muted == false ) {
 			print("=-=-=-=-=-=-=");
 			print("fretted scale degree " + frettedScaleDegree);
 			print("timekeeper tickinloop " + timeKeeper.tickInLoop);
-			activeScaleDict[frettedScaleDegree].Play();
+			notesDict[frettedScaleDegree].Play();
 			other.gameObject.GetComponent<Hand>().device.TriggerHapticPulse();
 			timeLastPlayed = Time.time;
-			timeKeeper.noteArray[timeKeeper.tickInLoop].Add(new Note("bass", timeKeeper.tickInLoop, activeScaleDict[frettedScaleDegree].clip.name, activeScaleDict[frettedScaleDegree]));
+			timeKeeper.noteArray[timeKeeper.tickInLoop].Add(new Note("bass", timeKeeper.tickInLoop, notesDict[frettedScaleDegree].clip.name, notesDict[frettedScaleDegree]));
 			//print(frettedScaleDegree);
 
 
