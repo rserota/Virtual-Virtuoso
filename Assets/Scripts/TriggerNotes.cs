@@ -15,7 +15,7 @@ public class TriggerNotes : MonoBehaviour {
 	private MuteRecordStateManager mrsm;
 	public List<Note>[] noteArray;
 	public TimeKeeper timeKeeper;
-	void awake () {
+	void Awake () {
 		timeKeeper = GameObject.Find("TimeKeeper").GetComponent<TimeKeeper>();
 	}
 	void Start () {
@@ -55,7 +55,7 @@ public class TriggerNotes : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		//print("hand?");
 		if ( other.tag.Contains("hand") && mrsm.muted == false ) {
-			print("=-=-=-=-=-=-=");
+			print("=-=-=-=-=-=");
 			print("fretted scale degree " + frettedScaleDegree);
 			print("timekeeper tickinloop " + timeKeeper.tickInLoop);
 			notesDict[frettedScaleDegree].Play();

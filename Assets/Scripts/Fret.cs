@@ -10,6 +10,7 @@ public class Fret : MonoBehaviour {
 	public string scaleDegree;
 	// Use this for initialization
 	void Start () {
+		hudText = GameObject.Find("timingText").GetComponent<Text>();
 		triggerNotes = strumBox.GetComponent<TriggerNotes>();
 		strumBoxRenderer = strumBox.GetComponent<Renderer>();
 		thisRenderer = gameObject.GetComponent<Renderer>();

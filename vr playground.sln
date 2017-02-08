@@ -1,6 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{B20C9FC2-11FB-4E3A-4F17-7F0E0298B82D}") = "vr playground", "Assembly-CSharp-firstpass.csproj", "{63B2E4BB-15DA-BD22-E496-1F811E29F81B}"
+EndProject
 Project("{B20C9FC2-11FB-4E3A-4F17-7F0E0298B82D}") = "vr playground", "Assembly-CSharp.csproj", "{30F3778D-756F-7F60-FA01-1C7F08979350}"
 EndProject
 Project("{B20C9FC2-11FB-4E3A-4F17-7F0E0298B82D}") = "vr playground", "Assembly-CSharp-Editor.csproj", "{F2FCC5FB-1EDA-8DB4-F402-F76176F8B032}"
@@ -11,6 +12,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63B2E4BB-15DA-BD22-E496-1F811E29F81B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63B2E4BB-15DA-BD22-E496-1F811E29F81B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63B2E4BB-15DA-BD22-E496-1F811E29F81B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63B2E4BB-15DA-BD22-E496-1F811E29F81B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{30F3778D-756F-7F60-FA01-1C7F08979350}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{30F3778D-756F-7F60-FA01-1C7F08979350}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30F3778D-756F-7F60-FA01-1C7F08979350}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -19,9 +24,6 @@ Global
 		{F2FCC5FB-1EDA-8DB4-F402-F76176F8B032}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2FCC5FB-1EDA-8DB4-F402-F76176F8B032}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2FCC5FB-1EDA-8DB4-F402-F76176F8B032}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj

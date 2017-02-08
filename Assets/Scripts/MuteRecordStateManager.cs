@@ -60,7 +60,7 @@ public class MuteRecordStateManager : MonoBehaviour {
 		foreach ( Transform child in gameObject.transform ) {
 			lights.Add(child.gameObject);
 		}
-		print("lights? " + lights.Count);
+		//print("lights? " + lights.Count);
 		lights[2].GetComponent<MeshRenderer>().material.color = Color.green;
 		lights[1].GetComponent<MeshRenderer>().material.color = Color.yellow;
 		lights[0].GetComponent<MeshRenderer>().material.color = Color.red;

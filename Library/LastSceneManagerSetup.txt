@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/hawkins.unity
+- path: Assets/_Scenes/ClockWork.unity
   isLoaded: 1
   isActive: 1
