@@ -9,7 +9,7 @@ public class TriggerNotes : MonoBehaviour {
 	public Color baseColor;
 	public Renderer meshRenderer;
 	// it's not an absolute note, but a relative degree on any scale
-	public string frettedScaleDegree = "i";
+	public string frettedScaleDegree;
 	public float timeLastPlayed;
 	public GameObject muteRecordStopLight;
 	private MuteRecordStateManager mrsm;
@@ -19,6 +19,7 @@ public class TriggerNotes : MonoBehaviour {
 		timeKeeper = GameObject.Find("TimeKeeper").GetComponent<TimeKeeper>();
 	}
 	void Start () {
+		frettedScaleDegree = "i";
 		//print(timeKeeper.noteArray);
 		mrsm = muteRecordStopLight.GetComponent<MuteRecordStateManager>();
 		meshRenderer = gameObject.GetComponent<Renderer>();
@@ -61,7 +62,7 @@ public class TriggerNotes : MonoBehaviour {
 			notesDict[frettedScaleDegree].Play();
 			other.gameObject.GetComponent<Hand>().device.TriggerHapticPulse();
 			timeLastPlayed = Time.time;
-			timeKeeper.noteArray[timeKeeper.tickInLoop].Add(new Note("bass", timeKeeper.tickInLoop, notesDict[frettedScaleDegree].clip.name, notesDict[frettedScaleDegree]));
+			noteArray[timeKeeper.tickInLoop].Add(new Note("bass", timeKeeper.tickInLoop, notesDict[frettedScaleDegree].clip.name, notesDict[frettedScaleDegree]));
 			//print(frettedScaleDegree);
 
 

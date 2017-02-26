@@ -6,11 +6,13 @@ public class Hand : MonoBehaviour {
 	public SteamVR_TrackedObject wand;
 	public SteamVR_Controller.Device device;
 
+	private string instrumentToBeSpawned;
+
 	private Transform handModel;
 	private Animator anima;
 	public Text hudText;
 	public Text tagText;
-
+	public GameObject bassPrefab;
 	private SteamVR_LaserPointer laserPointer;
 	public string whichHandIsThis;
 	private string prevHandState;
@@ -60,15 +62,19 @@ public class Hand : MonoBehaviour {
 	public void whatAmIPointingAt(object sender, PointerEventArgs e){
 		tagText.text = e.target.tag;
 		whatIAmPointingAt = e.target.gameObject;
+		if ( e.target.tag.Contains("spawner") ) {
+			instrumentToBeSpawned = e.target.tag;
+		}
 	}
 
 	public void iAmPointingAtNothing(object sender, PointerEventArgs e){
 		whatIAmPointingAt = null;
+		instrumentToBeSpawned = null;
 		tagText.text = "NOTHING";
 		print("POINTER OUT");
 	}
 	void Start () {
-		//print((int)wand.index);
+		print((int)wand.index);
 		device = SteamVR_Controller.Input((int)wand.index);
 		laserPointer.PointerIn += whatAmIPointingAt;
 		laserPointer.PointerOut += iAmPointingAtNothing;
@@ -93,25 +99,33 @@ public class Hand : MonoBehaviour {
 
 		else if ( currentHandState == "Laser" ) {
 			if ( whatIAmPointingAt != null ) { // we're pointing at SOMETHING
-				if ( whatIAmPointingAt.tag.Contains("instrument") ) {
+				if ( whatIAmPointingAt.tag.Contains("instrument") ) { // we're pointing at an instrument
 					if ( device.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Axis0) ){
 						MuteRecordStateManager mrsm = whatIAmPointingAt.GetComponentInChildren<MuteRecordStateManager>();
 
-						if ( device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).y > .7f ) {
+						if ( device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).y < .5f ) {
 							mrsm.muted = !mrsm.muted;
 						}
-						else if ( device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).y < -.7f ) {
+						else if ( device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).y > -.5f ) {
 							mrsm.recording = !mrsm.recording;
 						}
 						else {
 							mrsm.scheduledToMute = !mrsm.scheduledToMute;
 						}
 					}
-
 				}
-
-
-
+				else if ( whatIAmPointingAt.tag.Contains("spawner") ) { // we're pointing at an instrument spawner
+					if ( device.GetHairTriggerUp() ) {
+						if ( whatIAmPointingAt.tag.Contains("bass") ) {
+							Vector3 newPos = transform.position;
+							newPos.y += .2f;
+							Instantiate(bassPrefab, newPos, Quaternion.identity);
+						}
+					}	
+				}
+			}
+			else { // we're pointing at nothing
+				
 			}
 		}
 
