@@ -23,6 +23,11 @@ public class TimeKeeper : MonoBehaviour {
 	public AudioSource audioSource;
 
 	private float startTime;
+
+	public delegate void TimeEventHandler(int tick);
+
+	public TimeEventHandler eachTick;
+
 	void Awake () {
 		noteArray = new List<Note>[(12 * beatsPerBar * barsPerLoop)+1];
 
@@ -56,7 +61,6 @@ public class TimeKeeper : MonoBehaviour {
 
 	}
 
-	// Update is called once per frame
 	void FixedUpdate () {
 		//print (Time.time * 1000);
 		float timeElapsed = (Time.time + startTime) * 1000;
@@ -64,6 +68,7 @@ public class TimeKeeper : MonoBehaviour {
 		prevTick    = currentTick;
 		currentTick = ((int)timeElapsed / tickLen) -3 ;
 		if (prevTick != currentTick) {
+			
 			//print("=-=-=-=-=-=-=-=-=-=-=");
 			//print("current tick" + currentTick);
 			//print(currentTick % (12 * beatsPerBar * barsPerLoop));
@@ -77,6 +82,7 @@ public class TimeKeeper : MonoBehaviour {
 				currentBeat = ((currentTick-1) / 12) + 1;
 				beatInLoop = ((currentBeat-1) % (beatsPerBar * barsPerLoop))+1;
 			}
+			eachTick(tickInLoop);
 			//print("current beat" + currentBeat);
 
 //			print (beatsPerBar);
@@ -91,10 +97,10 @@ public class TimeKeeper : MonoBehaviour {
 			//print(noteArray[beatInLoop] == null);
 			//print(noteArray[beatInLoop].Count);
 
-			foreach (Note item in noteArray[tickInLoop]) {
+			//foreach (Note item in noteArray[tickInLoop]) {
 				//print(item);
-				item.audioSource.Play();
-			}
+			//	item.audioSource.Play();
+			//}
 //			noteArray [beatInLoop].play ();
 			//print(barInLoop);
 

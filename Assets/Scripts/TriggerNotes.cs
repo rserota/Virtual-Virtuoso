@@ -15,9 +15,27 @@ public class TriggerNotes : MonoBehaviour {
 	private MuteRecordStateManager mrsm;
 	public List<Note>[] noteArray;
 	public TimeKeeper timeKeeper;
+
+	public void payAttention(int tick){
+		print(tick);
+		if ( mrsm.muted == false ) {
+			foreach (Note item in noteArray[tick]) {
+				//print(item);
+				item.audioSource.Play();
+			}
+		}
+	}
 	void Awake () {
 		timeKeeper = GameObject.Find("TimeKeeper").GetComponent<TimeKeeper>();
+		noteArray = new List<Note>[(12 * timeKeeper.beatsPerBar * timeKeeper.barsPerLoop)+1];
+
+		for (int i = 0; i < noteArray.Length; i++){
+			noteArray[i] = new List<Note>();
+		}
+
+		timeKeeper.eachTick += payAttention;
 	}
+
 	void Start () {
 		frettedScaleDegree = "i";
 		//print(timeKeeper.noteArray);
@@ -62,7 +80,9 @@ public class TriggerNotes : MonoBehaviour {
 			notesDict[frettedScaleDegree].Play();
 			other.gameObject.GetComponent<Hand>().device.TriggerHapticPulse();
 			timeLastPlayed = Time.time;
-			noteArray[timeKeeper.tickInLoop].Add(new Note("bass", timeKeeper.tickInLoop, notesDict[frettedScaleDegree].clip.name, notesDict[frettedScaleDegree]));
+			if ( mrsm.recording == true ) {
+				noteArray[timeKeeper.tickInLoop].Add(new Note("bass", timeKeeper.tickInLoop, notesDict[frettedScaleDegree].clip.name, notesDict[frettedScaleDegree]));
+			}
 			//print(frettedScaleDegree);
 
 

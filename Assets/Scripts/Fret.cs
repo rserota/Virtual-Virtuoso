@@ -23,7 +23,7 @@ public class Fret : MonoBehaviour {
 
 
 	void OnTriggerEnter(Collider other) {
-		print("hand?");
+		//print("hand?");
 		if ( other.tag == "hand" ) {
 			other.gameObject.GetComponent<Hand>().device.TriggerHapticPulse();
 			hudText.text = scaleDegree;

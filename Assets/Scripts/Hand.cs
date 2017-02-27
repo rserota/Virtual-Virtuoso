@@ -103,10 +103,10 @@ public class Hand : MonoBehaviour {
 					if ( device.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Axis0) ){
 						MuteRecordStateManager mrsm = whatIAmPointingAt.GetComponentInChildren<MuteRecordStateManager>();
 
-						if ( device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).y < .5f ) {
+						if ( device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).y < -.5f ) {
 							mrsm.muted = !mrsm.muted;
 						}
-						else if ( device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).y > -.5f ) {
+						else if ( device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).y > .5f ) {
 							mrsm.recording = !mrsm.recording;
 						}
 						else {
