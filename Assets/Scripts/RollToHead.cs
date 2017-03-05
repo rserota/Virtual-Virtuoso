@@ -13,8 +13,10 @@ public class RollToHead : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 forceVector = head.transform.position - transform.position;
+		forceVector.y = 0f; 
 		//print(newVelocity);
 		rb.AddForce(forceVector);
+		//rb.velocity = forceVector;
 	}
 
 }
