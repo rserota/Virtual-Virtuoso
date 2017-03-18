@@ -1,10 +1,10 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{B20C9FC2-11FB-4E3A-4F17-7F0E0298B82D}") = "vr playground", "Assembly-CSharp-firstpass.csproj", "{63B2E4BB-15DA-BD22-E496-1F811E29F81B}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vr playground", "Assembly-CSharp-firstpass.csproj", "{63B2E4BB-15DA-BD22-E496-1F811E29F81B}"
 EndProject
-Project("{B20C9FC2-11FB-4E3A-4F17-7F0E0298B82D}") = "vr playground", "Assembly-CSharp.csproj", "{30F3778D-756F-7F60-FA01-1C7F08979350}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vr playground", "Assembly-CSharp.csproj", "{30F3778D-756F-7F60-FA01-1C7F08979350}"
 EndProject
-Project("{B20C9FC2-11FB-4E3A-4F17-7F0E0298B82D}") = "vr playground", "Assembly-CSharp-Editor.csproj", "{F2FCC5FB-1EDA-8DB4-F402-F76176F8B032}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vr playground", "Assembly-CSharp-Editor.csproj", "{F2FCC5FB-1EDA-8DB4-F402-F76176F8B032}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
