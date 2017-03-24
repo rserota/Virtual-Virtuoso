@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 public class Hand : MonoBehaviour {
@@ -18,8 +17,12 @@ public class Hand : MonoBehaviour {
 	private string prevHandState;
 	public string currentHandState;
 
+	public GameObject head;
+
 	public GameObject heldObject;
 	public GameObject whatIAmPointingAt;
+
+	public GameObject instrumentMenu;
 
 	int Idle = Animator.StringToHash("Idle");
 	int Point = Animator.StringToHash("Point");
@@ -125,7 +128,12 @@ public class Hand : MonoBehaviour {
 				}
 			}
 			else { // we're pointing at nothing
-				
+				if ( device.GetHairTriggerDown() ) {
+					Vector3 newPos = head.transform.position + (head.transform.forward * 2f);
+					instrumentMenu.transform.position = newPos;
+					instrumentMenu.transform.rotation = new Quaternion( 0.0f, head.transform.rotation.y, 0.0f, head.transform.rotation.w );
+
+				}	
 			}
 		}
 
