@@ -17,7 +17,7 @@ public class TriggerNotes : MonoBehaviour {
 	public TimeKeeper timeKeeper;
 
 	public void payAttention(int tick){
-		print(tick);
+		//print(tick);
 		if ( mrsm.muted == false ) {
 			foreach (Note item in noteArray[tick]) {
 				//print(item);

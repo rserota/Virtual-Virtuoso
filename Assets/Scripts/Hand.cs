@@ -23,6 +23,7 @@ public class Hand : MonoBehaviour {
 	public GameObject whatIAmPointingAt;
 
 	public GameObject instrumentMenu;
+ 
 
 	int Idle = Animator.StringToHash("Idle");
 	int Point = Animator.StringToHash("Point");
@@ -61,6 +62,7 @@ public class Hand : MonoBehaviour {
 		anima = handModel.GetComponent<Animator>();
 
 		laserPointer = GetComponent<SteamVR_LaserPointer>();
+
 	}
 	public void whatAmIPointingAt(object sender, PointerEventArgs e){
 		tagText.text = e.target.tag;
@@ -132,8 +134,19 @@ public class Hand : MonoBehaviour {
 					Vector3 newPos = head.transform.position + (head.transform.forward * 2f);
 					instrumentMenu.transform.position = newPos;
 					instrumentMenu.transform.rotation = new Quaternion( 0.0f, head.transform.rotation.y, 0.0f, head.transform.rotation.w );
+					
+					foreach (Transform child in instrumentMenu.transform){
+						child.gameObject.SetActive(true);
+					}
 
 				}	
+			}
+			if ( device.GetHairTriggerUp() ) {
+				// while in laser mode, dismiss the instrument menu on triggerUp, regardless of what we're pointing at. 
+
+				foreach (Transform child in instrumentMenu.transform){
+					child.gameObject.SetActive(false);
+				}
 			}
 		}
 
