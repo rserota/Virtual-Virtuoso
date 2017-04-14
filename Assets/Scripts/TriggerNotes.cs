@@ -51,14 +51,47 @@ public class TriggerNotes : MonoBehaviour {
 			notesDict.Add(audioClips[i].clip.name, audioClips[i]);
 		}
 
-		notesDict.Add("i", notesDict["BassSlapC4"]);
-		notesDict.Add("ii", notesDict["BassSlapD4"]);
-		notesDict.Add("iii", notesDict["BassSlapE4"]);
-		notesDict.Add("iv", notesDict["BassSlapF4"]);
-		notesDict.Add("v", notesDict["BassSlapG4"]);
-		notesDict.Add("vi", notesDict["BassSlapA4"]);
-		notesDict.Add("vii", notesDict["BassSlapB4"]);
-		notesDict.Add("viii", notesDict["BassSlapC5"]);
+		// p is for 'pop', as opposed to the regular bass strum
+		notesDict.Add("ip", notesDict["BassSlapC4"]);
+		notesDict.Add("iip", notesDict["BassSlapD4"]);
+		notesDict.Add("iiip", notesDict["BassSlapE4"]);
+		notesDict.Add("ivp", notesDict["BassSlapF4"]);
+		notesDict.Add("vp", notesDict["BassSlapG4"]);
+		notesDict.Add("vip", notesDict["BassSlapA4"]);
+		notesDict.Add("viip", notesDict["BassSlapB4"]);
+		notesDict.Add("viiip", notesDict["BassSlapC5"]);
+
+		// capitals denote that the note  is raised an octave
+		notesDict.Add("Ip", notesDict["BassSlapC5"]);
+		notesDict.Add("IIp", notesDict["BassSlapD5"]);
+		notesDict.Add("IIIp", notesDict["BassSlapE5"]);
+		notesDict.Add("IVp", notesDict["BassSlapF5"]);
+		notesDict.Add("Vp", notesDict["BassSlapG5"]);
+		notesDict.Add("VIp", notesDict["BassSlapA5"]);
+		notesDict.Add("VIIp", notesDict["BassSlapB5"]);
+		notesDict.Add("VIIIp", notesDict["BassSlapC6"]);
+
+		notesDict.Add("i", notesDict["BassStrumC4"]);
+		notesDict.Add("ii", notesDict["BassStrumD4"]);
+		notesDict.Add("iii", notesDict["BassStrumE4"]);
+		notesDict.Add("iv", notesDict["BassStrumF4"]);
+		notesDict.Add("v", notesDict["BassStrumG4"]);
+		notesDict.Add("vi", notesDict["BassStrumA4"]);
+		notesDict.Add("vii", notesDict["BassStrumB4"]);
+		notesDict.Add("viii", notesDict["BassStrumC5"]);
+
+		// capitals denote that the note  is raised an octave
+		notesDict.Add("I", notesDict["BassStrumC5"]);
+		notesDict.Add("II", notesDict["BassStrumD5"]);
+		notesDict.Add("III", notesDict["BassStrumE5"]);
+		notesDict.Add("IV", notesDict["BassStrumF5"]);
+		notesDict.Add("V", notesDict["BassStrumG5"]);
+		notesDict.Add("VI", notesDict["BassStrumA5"]);
+		notesDict.Add("VII", notesDict["BassStrumB5"]);
+		notesDict.Add("VIII", notesDict["BassStrumC6"]);
+
+	
+
 		timeLastPlayed = -1f;
 		//print(audioClips[0].time);
 		baseColor = new Color(.8f, .8f, .8f);
