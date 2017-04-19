@@ -8,6 +8,9 @@ public class Fret : MonoBehaviour {
 	private Renderer strumBoxRenderer;
 	private Renderer thisRenderer;
 	public string scaleDegree;
+
+	public Hand whichHandIsInMe;
+
 	// Use this for initialization
 	void Start () {
 		hudText = GameObject.Find("timingText").GetComponent<Text>();
@@ -25,12 +28,53 @@ public class Fret : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		//print("hand?");
 		if ( other.tag == "hand" ) {
-			other.gameObject.GetComponent<Hand>().device.TriggerHapticPulse();
+			whichHandIsInMe = other.GetComponent<Hand>();
+			whichHandIsInMe.device.TriggerHapticPulse();
 			hudText.text = scaleDegree;
-			triggerNotes.frettedScaleDegree = scaleDegree;
+			string modifiedScaleDegree = "";
+			if ( whichHandIsInMe.currentHandState == "Idle" ) {
+				modifiedScaleDegree = scaleDegree;
+			}
+			else if ( whichHandIsInMe.currentHandState == "Fist" ) {
+				modifiedScaleDegree = scaleDegree.ToUpper();
+			}
+			triggerNotes.frettedScaleDegree = modifiedScaleDegree;
 			//print("hand!");
 			triggerNotes.baseColor = thisRenderer.material.color;
 			strumBoxRenderer.material.color = thisRenderer.material.color;
+		}
+	}
+
+	void OnTriggerExit(Collider other) {
+		if ( other.tag.Contains("hand") ) {
+			whichHandIsInMe = null;
+
+/* 
+			triggerNotes.noteArray[triggerNotes.timeKeeper.tickInLoop].Add(new Note(
+				"bass", 
+				triggerNotes.timeKeeper.tickInLoop, 
+				triggerNotes.notesDict[triggerNotes.frettedScaleDegree + maybeP].clip.name, 
+				triggerNotes.notesDict[triggerNotes.frettedScaleDegree + maybeP], 
+				0f
+			));
+*/
+		}
+	}
+
+	void OnTriggerStay(Collider other) {
+		if ( other.tag.Contains("hand") ) {
+			if ( whichHandIsInMe != null ) {
+				//print("which hand is not null");
+				if ( whichHandIsInMe.currentHandState == "Idle" ) {
+					triggerNotes.frettedScaleDegree = scaleDegree.ToLower();
+					//print("idle");
+				}
+				else if ( whichHandIsInMe.currentHandState == "Fist" ) {
+					triggerNotes.frettedScaleDegree = scaleDegree.ToUpper();
+					//print("Fist");
+				}
+			}
+			//print(scaleDegree);
 		}
 	}
 }

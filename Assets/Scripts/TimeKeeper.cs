@@ -52,7 +52,7 @@ public class TimeKeeper : MonoBehaviour {
 			audioSource.Play ();
 			//print (noteArray);
 			print("add a beat");
-			noteArray[tickInLoop].Add(new Note ("hat", beatInLoop, "", audioSource));
+			noteArray[tickInLoop].Add(new Note ("hat", beatInLoop, "", audioSource, 1f));
 			foreach (var item in noteArray){
 				print(item.Count);
 			}
@@ -70,7 +70,11 @@ public class TimeKeeper : MonoBehaviour {
 		if (prevTick != currentTick) {
 			
 			//print("=-=-=-=-=-=-=-=-=-=-=");
-			//print("current tick" + currentTick);
+			print((currentTick % 12) >= 6);
+			string maybeAmpersand = "";
+			if ( (currentTick % 12) >= 6 ) {
+				maybeAmpersand = "&";
+			}
 			//print(currentTick % (12 * beatsPerBar * barsPerLoop));
 			if ( currentTick < 1 )  {
 				currentBeat = 0;
@@ -110,7 +114,7 @@ public class TimeKeeper : MonoBehaviour {
 			string maybeSpace;
 			if (beatInBar < 10){ maybeSpace = " ";}
 			else { maybeSpace = "";}
-			hudText.text = barInLoop + " - " + maybeSpace + beatInBar;
+			hudText.text = barInLoop + " - " + maybeSpace + beatInBar + maybeAmpersand;
 		}
 
 

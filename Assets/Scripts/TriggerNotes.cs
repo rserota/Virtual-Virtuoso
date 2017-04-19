@@ -15,13 +15,19 @@ public class TriggerNotes : MonoBehaviour {
 	private MuteRecordStateManager mrsm;
 	public List<Note>[] noteArray;
 	public TimeKeeper timeKeeper;
+	
 
 	public void payAttention(int tick){
 		//print(tick);
 		if ( mrsm.muted == false ) {
-			foreach (Note item in noteArray[tick]) {
+			foreach (Note note in noteArray[tick]) {
 				//print(item);
-				item.audioSource.Play();
+				foreach (var entry in notesDict){
+					if (entry.Value.isPlaying){
+						entry.Value.Stop();
+					}
+				}
+				note.audioSource.Play();
 			}
 		}
 	}
@@ -62,6 +68,7 @@ public class TriggerNotes : MonoBehaviour {
 		notesDict.Add("viiip", notesDict["BassSlapC5"]);
 
 		// capitals denote that the note  is raised an octave
+		// capitals here have nothing to do with major/minor. confusing notation, perhaps
 		notesDict.Add("Ip", notesDict["BassSlapC5"]);
 		notesDict.Add("IIp", notesDict["BassSlapD5"]);
 		notesDict.Add("IIIp", notesDict["BassSlapE5"]);
@@ -107,14 +114,31 @@ public class TriggerNotes : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		//print("hand?");
 		if ( other.tag.Contains("hand") && mrsm.muted == false ) {
-			print("=-=-=-=-=-=");
-			print("fretted scale degree " + frettedScaleDegree);
-			print("timekeeper tickinloop " + timeKeeper.tickInLoop);
-			notesDict[frettedScaleDegree].Play();
+			Hand hand = other.GetComponent<Hand>();
+			//print("=-=-=-=-=-=");
+			//print("fretted scale degree " + frettedScaleDegree);
+			//print("timekeeper tickinloop " + timeKeeper.tickInLoop);
+			string maybeP = "";
+			if ( hand.currentHandState == "Idle" ) {
+				maybeP = "";
+			}
+			else if ( hand.currentHandState == "Fist" ) {
+				maybeP = "p";
+			}
+			// Monophonic instruments are hard to make, and possible not even desired?
+			foreach (KeyValuePair<string, AudioSource> entry in notesDict ) {
+				if ( entry.Value.isPlaying ) {
+					entry.Value.Stop();
+				}
+			}
+			
+
+
+			notesDict[frettedScaleDegree + maybeP].Play();
 			other.gameObject.GetComponent<Hand>().device.TriggerHapticPulse();
 			timeLastPlayed = Time.time;
 			if ( mrsm.recording == true ) {
-				noteArray[timeKeeper.tickInLoop].Add(new Note("bass", timeKeeper.tickInLoop, notesDict[frettedScaleDegree].clip.name, notesDict[frettedScaleDegree]));
+				noteArray[timeKeeper.tickInLoop].Add(new Note("bass", timeKeeper.tickInLoop, notesDict[frettedScaleDegree + maybeP].clip.name, notesDict[frettedScaleDegree + maybeP], 1f));
 			}
 			//print(frettedScaleDegree);
 

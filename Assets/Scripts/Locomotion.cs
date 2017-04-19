@@ -44,9 +44,9 @@ public class Locomotion : MonoBehaviour {
 		}
 
 		//print(newVelocity);
-		print(newVelocity.magnitude);
-		print(Vector3.ClampMagnitude(newVelocity,1f).magnitude);
-		print("=-=-=-=-=-=-=");
+		//print(newVelocity.magnitude);
+		//print(Vector3.ClampMagnitude(newVelocity,1f).magnitude);
+		//print("=-=-=-=-=-=-=");
 		rigidBody.velocity = newVelocity;
 		locomotionText.text = newVelocity.ToString();
 	}
