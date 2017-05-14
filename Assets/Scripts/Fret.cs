@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine.UI;  
 public class Fret : MonoBehaviour {
-	public Text hudText;
 	private TriggerNotes triggerNotes;
 	public GameObject strumBox;
 	private Renderer strumBoxRenderer;
@@ -13,7 +12,6 @@ public class Fret : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		hudText = GameObject.Find("timingText").GetComponent<Text>();
 		triggerNotes = strumBox.GetComponent<TriggerNotes>();
 		strumBoxRenderer = strumBox.GetComponent<Renderer>();
 		thisRenderer = gameObject.GetComponent<Renderer>();
@@ -30,7 +28,6 @@ public class Fret : MonoBehaviour {
 		if ( other.tag == "hand" ) {
 			whichHandIsInMe = other.GetComponent<Hand>();
 			whichHandIsInMe.device.TriggerHapticPulse();
-			hudText.text = scaleDegree;
 			string modifiedScaleDegree = "";
 			if ( whichHandIsInMe.currentHandState == "Idle" ) {
 				modifiedScaleDegree = scaleDegree;

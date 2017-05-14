@@ -12,13 +12,25 @@ public class TriggerNotes : MonoBehaviour {
 	public string frettedScaleDegree;
 	public float timeLastPlayed;
 	public GameObject muteRecordStopLight;
+
+	public GameObject highlightCircle;
 	private MuteRecordStateManager mrsm;
 	public List<Note>[] noteArray;
 	public TimeKeeper timeKeeper;
 	
 
 	public void payAttention(int tick){
-		//print(tick);
+		//print(tick);	
+		if ( tick == 1 ) {
+
+			if (mrsm.scheduledToMute == true){
+				mrsm.muted = true;
+			}
+			else if (mrsm.scheduledToMute == false){
+				mrsm.muted = false;
+			}
+		}
+
 		if ( mrsm.muted == false ) {
 			foreach (Note note in noteArray[tick]) {
 				//print(item);
@@ -27,6 +39,7 @@ public class TriggerNotes : MonoBehaviour {
 						entry.Value.Stop();
 					}
 				}
+				timeLastPlayed = Time.time;
 				note.audioSource.Play();
 			}
 		}
@@ -100,8 +113,7 @@ public class TriggerNotes : MonoBehaviour {
 	
 
 		timeLastPlayed = -1f;
-		//print(audioClips[0].time);
-		baseColor = new Color(.8f, .8f, .8f);
+		baseColor = meshRenderer.material.color;
 	}
 	
 	// Update is called once per frame
@@ -145,5 +157,9 @@ public class TriggerNotes : MonoBehaviour {
 
 			//print("hand!");
 		}
+	}
+	void OnDestroy(){
+		print("destroyed!");
+		timeKeeper.eachTick -= payAttention;
 	}
 }

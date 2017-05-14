@@ -145,10 +145,10 @@ public class SteamVR_LaserPointer : MonoBehaviour
         }
 
 		if ( hand.whichHandIsThis == "right" ) {
-			pointer.transform.localPosition = new Vector3(0.018f, 0.025f, dist/2f);
+			pointer.transform.localPosition = new Vector3(0.000f, 0.030f, dist/2f);
 		}
 		else {
-			pointer.transform.localPosition = new Vector3(-0.018f, 0.025f, dist/2f);
+			pointer.transform.localPosition = new Vector3(-0.000f, 0.030f, dist/2f);
 		}
     }
 }

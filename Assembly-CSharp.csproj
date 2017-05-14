@@ -49,6 +49,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Fonts\Script\scriptTexttest.cs" />
      <Compile Include="Assets\HTC.UnityPlugin\StereoRendering\Examples\3. PortalDoor\Scripts\PortalEntry.cs" />
      <Compile Include="Assets\HTC.UnityPlugin\StereoRendering\Examples\4. Callbacks\Scripts\IlluminationController.cs" />
      <Compile Include="Assets\HTC.UnityPlugin\StereoRendering\Examples\6. RuntimeCreation\Scripts\CreateStereoRenderer.cs" />
@@ -94,19 +95,27 @@
      <Compile Include="Assets\Imported\Standard Assets\Utility\TimedObjectDestructor.cs" />
      <Compile Include="Assets\Imported\Standard Assets\Utility\WaypointCircuit.cs" />
      <Compile Include="Assets\Imported\Standard Assets\Utility\WaypointProgressTracker.cs" />
+     <Compile Include="Assets\Imported\TornadoBanditsStudio\Low Poly Free Pack\Scripts\TBS_CameraMovement.cs" />
      <Compile Include="Assets\Imported\vr cartoon hand\scripts\handanimations.cs" />
      <Compile Include="Assets\Scripts\ChordProgression.cs" />
      <Compile Include="Assets\Scripts\DrumBox.cs" />
      <Compile Include="Assets\Scripts\FollowTarget.cs" />
      <Compile Include="Assets\Scripts\Fret.cs" />
      <Compile Include="Assets\Scripts\Hand.cs" />
+     <Compile Include="Assets\Scripts\Highlight.cs" />
      <Compile Include="Assets\Scripts\Locomotion.cs" />
      <Compile Include="Assets\Scripts\Microphone.cs" />
      <Compile Include="Assets\Scripts\MuteRecordStateManager.cs" />
      <Compile Include="Assets\Scripts\Note.cs" />
      <Compile Include="Assets\Scripts\RollToHead.cs" />
      <Compile Include="Assets\Scripts\TimeKeeper.cs" />
+     <Compile Include="Assets\Scripts\TriggerCrashNotes.cs" />
+     <Compile Include="Assets\Scripts\TriggerHatNotes.cs" />
      <Compile Include="Assets\Scripts\TriggerNotes.cs" />
+     <Compile Include="Assets\Scripts\TriggerPianoNotes.cs" />
+     <Compile Include="Assets\Scripts\TriggerSnareNotes.cs" />
+     <Compile Include="Assets\Scripts\TriggerTomNotes.cs" />
+     <Compile Include="Assets\Scripts\triggerKickNotes.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
      <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
@@ -214,6 +223,7 @@
      <None Include="Assets\Imported\Standard Assets\Prototyping\Shaders\WorldCoordDiffuse.shader" />
      <None Include="Assets\SteamVR\Resources\SteamVR_ClearAll.shader" />
      <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />
+     <None Include="Assets\Fonts\Documentation\JazzCreateBubble_VersionHistory_1.1.txt" />
      <None Include="Assets\HTC.UnityPlugin\StereoRendering\Shader\StereoRenderShader.shader" />
      <None Include="Assets\SteamVR\InteractionSystem\Teleport\Shaders\Highlight.shader" />
      <None Include="Assets\HTC.UnityPlugin\StereoRendering\readme.txt" />
@@ -223,6 +233,7 @@
      <None Include="Assets\Imported\vr cartoon hand\sources\shader\Fresnel - Transparent Rim.shader" />
      <None Include="Assets\SteamVR\readme.txt" />
      <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
+     <None Include="Assets\Fonts\Documentation\JazzCreateAltKeys_BubbleFont.txt" />
      <None Include="Assets\SteamVR\Resources\SteamVR_ColorOut.shader" />
      <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
      <None Include="Assets\SteamVR\InteractionSystem\Readme_InteractionSystem.txt" />

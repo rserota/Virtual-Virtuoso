@@ -20,6 +20,10 @@ public class TimeKeeper : MonoBehaviour {
 	private int beatInLoop;
 	private int beatInBar;
 	public Text hudText;
+
+	public Text barText;
+	public Text beatText;
+	public Text ampersandText;
 	public AudioSource audioSource;
 
 	private float startTime;
@@ -70,7 +74,7 @@ public class TimeKeeper : MonoBehaviour {
 		if (prevTick != currentTick) {
 			
 			//print("=-=-=-=-=-=-=-=-=-=-=");
-			print((currentTick % 12) >= 6);
+			//print((currentTick % 12) >= 6);
 			string maybeAmpersand = "";
 			if ( (currentTick % 12) >= 6 ) {
 				maybeAmpersand = "&";
@@ -86,7 +90,7 @@ public class TimeKeeper : MonoBehaviour {
 				currentBeat = ((currentTick-1) / 12) + 1;
 				beatInLoop = ((currentBeat-1) % (beatsPerBar * barsPerLoop))+1;
 			}
-			eachTick(tickInLoop);
+			if ( eachTick != null ) { eachTick(tickInLoop); }
 			//print("current beat" + currentBeat);
 
 //			print (beatsPerBar);
@@ -114,7 +118,9 @@ public class TimeKeeper : MonoBehaviour {
 			string maybeSpace;
 			if (beatInBar < 10){ maybeSpace = " ";}
 			else { maybeSpace = "";}
-			hudText.text = barInLoop + " - " + maybeSpace + beatInBar + maybeAmpersand;
+			barText.text = barInLoop.ToString();
+			beatText.text = beatInBar.ToString();
+			ampersandText.text = maybeAmpersand;
 		}
 
 

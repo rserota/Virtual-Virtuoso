@@ -13,7 +13,7 @@ public class FollowTarget : MonoBehaviour {
 	// Update is called once per frame
 
 
-	void Update(){
+	void FixedUpdate(){
 		Vector3 newPos = target.transform.position;
 		newPos.y += hoverHeight;
 		

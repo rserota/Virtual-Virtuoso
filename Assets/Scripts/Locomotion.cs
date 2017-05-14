@@ -19,24 +19,25 @@ public class Locomotion : MonoBehaviour {
 		// print(transform.position - cameraRig.transform.position);
 		Vector3 newVelocity = (transform.position - cameraRig.transform.position) * 2f;
 		newVelocity.y = 0;
+		float deadZoneSize = .4f;
 		string speedString = "woosh!";
-		if ( Mathf.Abs(newVelocity.z) > .35f ) {
-			if (newVelocity.z > .35f){
-				newVelocity.z -= .35f;
+		if ( Mathf.Abs(newVelocity.z) > deadZoneSize ) {
+			if (newVelocity.z > deadZoneSize){
+				newVelocity.z -= deadZoneSize;
 			}
-			else if (newVelocity.z < -.35f) {
-				newVelocity.z += .35f;
+			else if (newVelocity.z < -deadZoneSize) {
+				newVelocity.z += deadZoneSize;
 			}
 		}
 		else {
 			newVelocity.z = 0f;
 		}
-		if ( Mathf.Abs(newVelocity.x) > .35f ) {
-			if (newVelocity.x > .35f){
-				newVelocity.x -= .35f;
+		if ( Mathf.Abs(newVelocity.x) > deadZoneSize) {
+			if (newVelocity.x > deadZoneSize){
+				newVelocity.x -= deadZoneSize;
 			}
-			else if (newVelocity.x < -.35f) {
-				newVelocity.x += .35f;
+			else if (newVelocity.x < -deadZoneSize) {
+				newVelocity.x += deadZoneSize;
 			}
 		}
 		else {

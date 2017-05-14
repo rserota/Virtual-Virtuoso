@@ -12,6 +12,8 @@ public class Hand : MonoBehaviour {
 	public Text hudText;
 	public Text tagText;
 	public GameObject bassPrefab;
+	public GameObject drumPrefab;
+	public GameObject keysPrefab;
 	private SteamVR_LaserPointer laserPointer;
 	public string whichHandIsThis;
 	private string prevHandState;
@@ -67,8 +69,8 @@ public class Hand : MonoBehaviour {
 	public void whatAmIPointingAt(object sender, PointerEventArgs e){
 		tagText.text = e.target.tag;
 		whatIAmPointingAt = e.target.gameObject;
-		if ( e.target.tag.Contains("spawner") ) {
-			instrumentToBeSpawned = e.target.tag;
+		if ( e.target.tag.Contains("highlightable") ) {
+			e.target.GetComponentInChildren<Highlight>().renderer.enabled = true;
 		}
 	}
 
@@ -77,6 +79,9 @@ public class Hand : MonoBehaviour {
 		instrumentToBeSpawned = null;
 		tagText.text = "NOTHING";
 		print("POINTER OUT");
+		if ( e.target.tag.Contains("highlightable") ) {
+			e.target.GetComponentInChildren<Highlight>().renderer.enabled = false;
+		}
 	}
 	void Start () {
 		print((int)wand.index);
@@ -118,6 +123,10 @@ public class Hand : MonoBehaviour {
 							mrsm.scheduledToMute = !mrsm.scheduledToMute;
 						}
 					}
+					else if ( device.GetPressDown(Valve.VR.EVRButtonId.k_EButton_Grip) ) {
+						Destroy(whatIAmPointingAt);
+						whatIAmPointingAt = null;
+					}
 				}
 				else if ( whatIAmPointingAt.tag.Contains("spawner") ) { // we're pointing at an instrument spawner
 					if ( device.GetHairTriggerUp() ) {
@@ -126,7 +135,18 @@ public class Hand : MonoBehaviour {
 							newPos.y += .2f;
 							Instantiate(bassPrefab, newPos, Quaternion.identity);
 						}
-					}	
+						else if ( whatIAmPointingAt.tag.Contains("drum") ) {
+							Vector3 newPos = transform.position;
+							newPos.y += .2f;
+							Instantiate(drumPrefab, newPos, Quaternion.identity);
+						}
+						else if ( whatIAmPointingAt.tag.Contains("keys") ) {
+							Vector3 newPos = transform.position;
+							newPos.y += .2f;
+							Instantiate(keysPrefab, newPos, Quaternion.identity);
+						}
+					}
+
 				}
 			}
 			else { // we're pointing at nothing
