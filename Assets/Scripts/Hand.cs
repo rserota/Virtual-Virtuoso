@@ -14,6 +14,8 @@ public class Hand : MonoBehaviour {
 	public GameObject bassPrefab;
 	public GameObject drumPrefab;
 	public GameObject keysPrefab;
+	public GameObject clockPrefab;
+	public GameObject lutePrefab;
 	private SteamVR_LaserPointer laserPointer;
 	public string whichHandIsThis;
 	private string prevHandState;
@@ -144,6 +146,16 @@ public class Hand : MonoBehaviour {
 							Vector3 newPos = transform.position;
 							newPos.y += .2f;
 							Instantiate(keysPrefab, newPos, Quaternion.identity);
+						}
+						else if ( whatIAmPointingAt.tag.Contains("clock") ) {
+							Vector3 newPos = transform.position;
+							newPos.y += .2f;
+							Instantiate(clockPrefab, newPos, Quaternion.identity);
+						}
+						else if ( whatIAmPointingAt.tag.Contains("lute") ) {
+							Vector3 newPos = transform.position;
+							newPos.y += .2f;
+							Instantiate(lutePrefab, newPos, Quaternion.identity);
 						}
 					}
 

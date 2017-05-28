@@ -104,6 +104,7 @@
      <Compile Include="Assets\Scripts\Hand.cs" />
      <Compile Include="Assets\Scripts\Highlight.cs" />
      <Compile Include="Assets\Scripts\Locomotion.cs" />
+     <Compile Include="Assets\Scripts\LuteFret.cs" />
      <Compile Include="Assets\Scripts\Microphone.cs" />
      <Compile Include="Assets\Scripts\MuteRecordStateManager.cs" />
      <Compile Include="Assets\Scripts\Note.cs" />
@@ -111,6 +112,8 @@
      <Compile Include="Assets\Scripts\TimeKeeper.cs" />
      <Compile Include="Assets\Scripts\TriggerCrashNotes.cs" />
      <Compile Include="Assets\Scripts\TriggerHatNotes.cs" />
+     <Compile Include="Assets\Scripts\TriggerLuteNotes.cs" />
+     <Compile Include="Assets\Scripts\TriggerMetronomeNotes.cs" />
      <Compile Include="Assets\Scripts\TriggerNotes.cs" />
      <Compile Include="Assets\Scripts\TriggerPianoNotes.cs" />
      <Compile Include="Assets\Scripts\TriggerSnareNotes.cs" />

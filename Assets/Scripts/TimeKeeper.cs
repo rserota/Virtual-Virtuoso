@@ -12,8 +12,8 @@ public class TimeKeeper : MonoBehaviour {
 	private int currentTick;
 	private int prevTick;
 	public int tickInLoop {get; private set;}
-	private int currentBeat;
-	private int prevBeat;
+	public int currentBeat;
+	public int prevBeat;
 	public int beatsPerBar;
 	public int barsPerLoop;
 	private int barInLoop;
@@ -68,7 +68,7 @@ public class TimeKeeper : MonoBehaviour {
 	void FixedUpdate () {
 		//print (Time.time * 1000);
 		float timeElapsed = (Time.time + startTime) * 1000;
-
+		prevBeat = currentBeat;
 		prevTick    = currentTick;
 		currentTick = ((int)timeElapsed / tickLen) -3 ;
 		if (prevTick != currentTick) {
