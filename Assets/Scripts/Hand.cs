@@ -74,19 +74,25 @@ public class Hand : MonoBehaviour {
 		if ( e.target.tag.Contains("highlightable") ) {
 			e.target.GetComponentInChildren<Highlight>().renderer.enabled = true;
 		}
+		if ( e.target.tag.Contains("spawner") ) {
+			e.target.GetComponent<Darken>().textMesh.color = Color.black;
+		}
 	}
 
 	public void iAmPointingAtNothing(object sender, PointerEventArgs e){
 		whatIAmPointingAt = null;
 		instrumentToBeSpawned = null;
 		tagText.text = "NOTHING";
-		print("POINTER OUT");
+		//print("POINTER OUT");
 		if ( e.target.tag.Contains("highlightable") ) {
 			e.target.GetComponentInChildren<Highlight>().renderer.enabled = false;
 		}
+		if ( e.target.tag.Contains("spawner") ) {
+			e.target.GetComponent<Darken>().textMesh.color = Color.white;
+		}
 	}
 	void Start () {
-		print((int)wand.index);
+		//print((int)wand.index);
 		device = SteamVR_Controller.Input((int)wand.index);
 		laserPointer.PointerIn += whatAmIPointingAt;
 		laserPointer.PointerOut += iAmPointingAtNothing;
@@ -134,27 +140,27 @@ public class Hand : MonoBehaviour {
 					if ( device.GetHairTriggerUp() ) {
 						if ( whatIAmPointingAt.tag.Contains("bass") ) {
 							Vector3 newPos = transform.position;
-							newPos.y += .2f;
+							newPos.y += .4f;
 							Instantiate(bassPrefab, newPos, Quaternion.identity);
 						}
 						else if ( whatIAmPointingAt.tag.Contains("drum") ) {
 							Vector3 newPos = transform.position;
-							newPos.y += .2f;
+							newPos.y += .4f;
 							Instantiate(drumPrefab, newPos, Quaternion.identity);
 						}
 						else if ( whatIAmPointingAt.tag.Contains("keys") ) {
 							Vector3 newPos = transform.position;
-							newPos.y += .2f;
+							newPos.y += .4f;
 							Instantiate(keysPrefab, newPos, Quaternion.identity);
 						}
 						else if ( whatIAmPointingAt.tag.Contains("clock") ) {
 							Vector3 newPos = transform.position;
-							newPos.y += .2f;
+							newPos.y += .4f;
 							Instantiate(clockPrefab, newPos, Quaternion.identity);
 						}
 						else if ( whatIAmPointingAt.tag.Contains("lute") ) {
 							Vector3 newPos = transform.position;
-							newPos.y += .2f;
+							newPos.y += .4f;
 							Instantiate(lutePrefab, newPos, Quaternion.identity);
 						}
 					}

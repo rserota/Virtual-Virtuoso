@@ -147,7 +147,7 @@ public class TriggerLuteNotes : MonoBehaviour {
 		}
 	}
 	void OnDestroy(){
-		print("destroyed!");
+		//print("destroyed!");
 		timeKeeper.eachTick -= payAttention;
 	}
 }

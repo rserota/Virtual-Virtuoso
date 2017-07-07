@@ -67,7 +67,7 @@ public class triggerKickNotes : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		print("hand?");
+		//print("hand?");
 		if ( other.tag.Contains("hand") && mrsm.muted == false ) {
 
 			kickAudioClip.Play();
@@ -84,7 +84,7 @@ public class triggerKickNotes : MonoBehaviour {
 		}
 	}
 	void OnDestroy(){
-		print("destroyed!");
+		//print("destroyed!");
 		timeKeeper.eachTick -= payAttention;
 	}
 

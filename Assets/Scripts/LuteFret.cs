@@ -50,7 +50,7 @@ public class LuteFret : MonoBehaviour {
 				luteString.frettedScaleDegree = modifiedScaleDegree + luteString.stringOffset;
 				luteString.baseColor = thisRenderer.material.color;
 				
-				print(luteString.frettedScaleDegree);
+				//print(luteString.frettedScaleDegree);
 			}
 			foreach ( Renderer renderer in strumBoxRenderers ) {
 				renderer.material.color = thisRenderer.material.color;
@@ -81,11 +81,15 @@ public class LuteFret : MonoBehaviour {
 		if ( other.tag.Contains("hand") ) {
 			if ( whichHandIsInMe != null ) {
 				//print("which hand is not null");
+				int modifiedScaleDegree = 0;
 				if ( whichHandIsInMe.currentHandState == "Idle" ) {
+
+					modifiedScaleDegree = scaleDegree + 7;
 					//triggerNotes.frettedScaleDegree = scaleDegree.ToLower();
 					//print("idle");
 				}
 				else if ( whichHandIsInMe.currentHandState == "Fist" ) {
+					modifiedScaleDegree = scaleDegree + 7;
 					//triggerNotes.frettedScaleDegree = scaleDegree.ToUpper();
 					//print("Fist");
 				}

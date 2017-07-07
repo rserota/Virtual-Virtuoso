@@ -5,7 +5,7 @@ public class Locomotion : MonoBehaviour {
 	private GameObject cameraRig;
 	private Rigidbody rigidBody;
 	// Use this for initialization
-
+	public float deadZoneSize;
 	public UnityEngine.UI.Text locomotionText;
 	void Start () {
 		cameraRig = GameObject.Find("[CameraRig]");
@@ -19,7 +19,6 @@ public class Locomotion : MonoBehaviour {
 		// print(transform.position - cameraRig.transform.position);
 		Vector3 newVelocity = (transform.position - cameraRig.transform.position) * 2f;
 		newVelocity.y = 0;
-		float deadZoneSize = .4f;
 		string speedString = "woosh!";
 		if ( Mathf.Abs(newVelocity.z) > deadZoneSize ) {
 			if (newVelocity.z > deadZoneSize){
@@ -49,6 +48,6 @@ public class Locomotion : MonoBehaviour {
 		//print(Vector3.ClampMagnitude(newVelocity,1f).magnitude);
 		//print("=-=-=-=-=-=-=");
 		rigidBody.velocity = newVelocity;
-		locomotionText.text = newVelocity.ToString();
+		//locomotionText.text = newVelocity.ToString();
 	}
 }

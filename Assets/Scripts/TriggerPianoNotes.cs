@@ -115,7 +115,7 @@ public class TriggerPianoNotes : MonoBehaviour {
 		}
 	}
 	void OnDestroy(){
-		print("destroyed!");
+		//print("destroyed!");
 		timeKeeper.eachTick -= payAttention;
 	}
 

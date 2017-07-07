@@ -98,6 +98,7 @@
      <Compile Include="Assets\Imported\TornadoBanditsStudio\Low Poly Free Pack\Scripts\TBS_CameraMovement.cs" />
      <Compile Include="Assets\Imported\vr cartoon hand\scripts\handanimations.cs" />
      <Compile Include="Assets\Scripts\ChordProgression.cs" />
+     <Compile Include="Assets\Scripts\Darken.cs" />
      <Compile Include="Assets\Scripts\DrumBox.cs" />
      <Compile Include="Assets\Scripts\FollowTarget.cs" />
      <Compile Include="Assets\Scripts\Fret.cs" />
